@@ -2,11 +2,21 @@ package com.estudo.projetoweb.entities;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
 
 private static final long serialVersionUID = 1L;
-private Long Id;
-private String Name;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
+private String name;
 private String email;
 private String phone;
 private String password;
@@ -15,20 +25,20 @@ public User() {
 }
 
 public User(Long id, String name, String email, String phone, String password) {
-    this.Id = id;
-    this.Name = name;
+    this.id = id;
+    this.name = name;
     this.email = email;
     this.phone = phone;
     this.password = password;
 }
 
 public Long getId() {
-    return Id;
+    return id;
 
 }
 
 public String getName() {
-    return Name;
+    return name;
 }
 
 public String getEmail() {
@@ -44,11 +54,11 @@ public String getPassword() {
 }
 
 public void setId(Long id) {
-    Id = id;
+    this.id = id;
 }
 
 public void setName(String name) {
-    Name = name;
+    this.name = name;
 }
 
 public void setEmail(String email) {
@@ -67,7 +77,7 @@ public void setPassword(String password) {
 public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+    result = prime * result + ((id == null) ? 0 : id.hashCode());
     return result;
 }
 
@@ -80,10 +90,10 @@ public boolean equals(Object obj) {
     if (getClass() != obj.getClass())
         return false;
     User other = (User) obj;
-    if (Id == null) {
-        if (other.Id != null)
+    if (id == null) {
+        if (other.id != null)
             return false;
-    } else if (!Id.equals(other.Id))
+    } else if (!id.equals(other.id))
         return false;
     return true;
 }
